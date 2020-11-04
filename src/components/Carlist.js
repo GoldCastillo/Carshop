@@ -6,16 +6,16 @@ import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import AddCar from "./AddCar.js";
-import EditCar from "./EditCar.js";
 import Alert from "@material-ui/lab/Alert";
+import EditCar from "./EditCar.js";
+import AddCar from "./AddCar.js";
 
 function Carlist() {
   const [cars, setCars] = useState([]);
   const gridRef = useRef();
   const [deleteOpen, setDeleteOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
-  const [updateOpen, setUpdateOpen] = React.useState(false);  
+  const [updateOpen, setUpdateOpen] = React.useState(false);
   useEffect(() => {
     getCars();
   }, []);
@@ -111,7 +111,11 @@ function Carlist() {
           pagination="true"
           paginationPageSize="10"
         ></AgGridReact>
-        <Snackbar open={deleteOpen} autoHideDuration={3000} onClose={closeSnackbar}>
+        <Snackbar
+          open={deleteOpen}
+          autoHideDuration={3000}
+          onClose={closeSnackbar}
+        >
           <Alert
             severity="success"
             elevation={5}
@@ -131,7 +135,11 @@ function Carlist() {
             Delete was successful!
           </Alert>
         </Snackbar>
-        <Snackbar open={updateOpen} autoHideDuration={3000} onClose={closeSnackbar}>
+        <Snackbar
+          open={updateOpen}
+          autoHideDuration={3000}
+          onClose={closeSnackbar}
+        >
           <Alert
             severity="success"
             elevation={5}
@@ -151,7 +159,11 @@ function Carlist() {
             Update was successful!
           </Alert>
         </Snackbar>
-        <Snackbar open={addOpen} autoHideDuration={3000} onClose={closeSnackbar}>
+        <Snackbar
+          open={addOpen}
+          autoHideDuration={3000}
+          onClose={closeSnackbar}
+        >
           <Alert
             severity="success"
             elevation={5}
