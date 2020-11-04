@@ -6,7 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-function AddCar(props) {
+function EditCar(props) {
   const [car, setCar] = useState({
     brand: "",
     model: "",
@@ -18,6 +18,14 @@ function AddCar(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    setCar({
+      brand: props.car.brand,
+      model: props.car.model,
+      color: props.car.color,
+      fuel: props.car.fuel,
+      year: props.car.year,
+      price: props.car.price,
+    });
     setOpen(true);
   };
 
@@ -25,11 +33,11 @@ function AddCar(props) {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleUpdate = () => {
     if (isNaN(car.price) || isNaN(car.year)) {
       alert("Price and year must be numbers!");
     } else {
-      props.addCar(car);
+      props.updateCar(car, props.car._links.car.href);
       handleClose();
     }
   };
@@ -40,15 +48,15 @@ function AddCar(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add car
+      <Button color="primary" onClick={handleClickOpen}>
+        Edit
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">New car</DialogTitle>
+        <DialogTitle id="form-dialog-title">Edit car</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
@@ -103,7 +111,7 @@ function AddCar(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleSave} color="primary">
+          <Button onClick={handleUpdate} color="primary">
             Save
           </Button>
         </DialogActions>
@@ -112,4 +120,4 @@ function AddCar(props) {
   );
 }
 
-export default AddCar;
+export default EditCar;
