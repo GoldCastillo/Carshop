@@ -9,6 +9,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Alert from "@material-ui/lab/Alert";
 import EditCar from "./EditCar.js";
 import AddCar from "./AddCar.js";
+import {ExportCSV} from "./ExportCsv"
+import ExcelColumn from "react-data-export/dist/ExcelPlugin/elements/ExcelColumn";
 
 function Carlist() {
   const [cars, setCars] = useState([]);
@@ -16,6 +18,7 @@ function Carlist() {
   const [deleteOpen, setDeleteOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
   const [updateOpen, setUpdateOpen] = React.useState(false);
+  const excel = "CarsExcel"
   useEffect(() => {
     getCars();
   }, []);
@@ -85,7 +88,7 @@ function Carlist() {
         <Button
           color="secondary"
           size="small"
-          onClick={() => deleteCar(params.value)}
+          onClick={() => console.log(params.value)}
         >
           Delete
         </Button>
@@ -96,6 +99,7 @@ function Carlist() {
   return (
     <div>
       <AddCar addCar={addCar} />
+      
       <div
         className="ag-theme-material"
         style={{ height: "700px", width: "70%", margin: "auto" }}
@@ -184,6 +188,7 @@ function Carlist() {
           </Alert>
         </Snackbar>
       </div>
+      <ExportCSV csvData={cars} fileName={excel}/>
     </div>
   );
 }
